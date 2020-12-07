@@ -14,14 +14,7 @@ public class StringCalculator {
             return Integer.parseInt(numbers);
         }
         String[] stringArr = numbers.split(",");
-        int[] intArr = new int[stringArr.length];
-        for (int i = 0; i < stringArr.length; i++) {
-            intArr[i] = Integer.parseInt(stringArr[i]);
-        }
-        int sum = 0;
-        for (int i : intArr) {
-            sum += i;
-        }
-        return sum;
+        int[] intArr = Arrays.stream(stringArr).mapToInt(Integer::parseInt).toArray();
+        return Arrays.stream(intArr).sum();
     }
 }
