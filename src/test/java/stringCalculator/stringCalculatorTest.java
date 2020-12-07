@@ -45,4 +45,10 @@ public class stringCalculatorTest {
         Assertions.assertEquals(6, calculator.Add(numbers));
 
     }
+    @Test
+    public void addSupportsDifferentDelimiters(){
+        String numbers=//[delimiter]\n[numbers…]
+                 "1\n2,3";
+        Assertions.assertEquals(6, calculator.Add(numbers));
+    }
 }
