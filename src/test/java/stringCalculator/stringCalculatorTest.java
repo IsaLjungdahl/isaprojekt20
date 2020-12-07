@@ -7,38 +7,42 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class stringCalculatorTest {
+
+    private final StringCalculator calculator = new StringCalculator();
+
     @Test
     public void doesStringCalculatorExist(){
-        StringCalculator calculator=new StringCalculator();
         assertTrue(calculator.Add());
     }
     @Test
-    public void calculatorReturnsZeroWhenEmptyString(){
-        StringCalculator calculator=new StringCalculator();
+    public void addReturnsZeroWhenEmptyString(){
         String numbers="";
         assertEquals(0,calculator.Add(numbers));
     }
     @Test
-    public void calculatorReturnsJustOneNumber(){
-        StringCalculator calculator=new StringCalculator();
+    public void addReturnsJustOneNumber(){
         String numbers="1";
 
         Assertions.assertEquals(1,calculator.Add(numbers));
     }
     @Test
-    public void calculatorReturnsSumOfTwoNumbers(){
-        StringCalculator calculator=new StringCalculator();
+    public void addReturnsSumOfTwoNumbers(){
         String numbers="1,2";
 
         Assertions.assertEquals(3,calculator.Add(numbers));
 
     }
     @Test
-    public void calculatorReturnsSumOfMoreThanTwoNumbers(){
-        StringCalculator calculator=new StringCalculator();
+    public void addReturnsSumOfMoreThanTwoNumbers(){
         String numbers="1,2,3,4";
 
-        Assertions.assertEquals(10,calculator.Add(numbers));
+        Assertions.assertEquals(10, calculator.Add(numbers));
+
+    }
+    @Test
+    public void addCanHandleNewLinesBetweenDigits(){
+        String numbers="1\n2,3";
+        Assertions.assertEquals(6, calculator.Add(numbers));
 
     }
 }
