@@ -1,11 +1,13 @@
 package stringCalculator;
 
 public class StringCalculator {
-    public boolean add() {
+    public boolean Add() {
         return true;
     }
 
-    public int add(String numbers) {
-        return 0;
+    public int Add(String numbers) {
+        if(numbers.isEmpty()){
+        return 0;}
+        return Integer.parseInt(numbers);
     }
 }
