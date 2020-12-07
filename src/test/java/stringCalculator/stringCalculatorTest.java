@@ -25,4 +25,20 @@ public class stringCalculatorTest {
 
         Assertions.assertEquals(1,calculator.Add(numbers));
     }
+    @Test
+    public void calculatorReturnsSumOfTwoNumbers(){
+        StringCalculator calculator=new StringCalculator();
+        String numbers="1,2";
+
+        Assertions.assertEquals(3,calculator.Add(numbers));
+
+    }
+    @Test
+    public void calculatorReturnsSumOfMoreThanTwoNumbers(){
+        StringCalculator calculator=new StringCalculator();
+        String numbers="1,2,3,4";
+
+        Assertions.assertEquals(10,calculator.Add(numbers));
+
+    }
 }
