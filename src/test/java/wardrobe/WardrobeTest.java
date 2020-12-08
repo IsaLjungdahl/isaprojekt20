@@ -2,6 +2,7 @@ package wardrobe;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WardrobeTest {
@@ -17,6 +18,8 @@ public class WardrobeTest {
     }
     @Test
     public void wardRobeMakerReturnsInt(){
-        
+        Wardrobe wardrobe=new Wardrobe();
+        int wall=250;
+        assertEquals(250,wardrobe.wardrobeMaker(wall));
     }
 }
