@@ -78,5 +78,12 @@ public class stringCalculatorTest {
         assertThat(e).hasMessage("negatives not allowed [-1, -2, -3]");
     }
 
+    @Test
+    public void ignoreNumberOverThousand() throws Exception {
+        String numbers=//[delimiter]\n[numbers…]
+                "1001,2";
+        Assertions.assertEquals(2, calculator.Add(numbers));
+    }
+
 }
 
