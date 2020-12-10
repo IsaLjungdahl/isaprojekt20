@@ -25,14 +25,14 @@ public class stringCalculatorTest {
     public void addReturnsJustOneNumber() throws Exception {
         String numbers = "1";
 
-        Assertions.assertEquals(1, calculator.Add(numbers));
+        assertEquals(1, calculator.Add(numbers));
     }
 
     @Test
     public void addReturnsSumOfTwoNumbers() throws Exception {
         String numbers = "1,2";
 
-        Assertions.assertEquals(3, calculator.Add(numbers));
+        assertEquals(3, calculator.Add(numbers));
 
     }
 
@@ -40,21 +40,21 @@ public class stringCalculatorTest {
     public void addReturnsSumOfMoreThanTwoNumbers() throws Exception {
         String numbers = "1,2,3,4";
 
-        Assertions.assertEquals(10, calculator.Add(numbers));
+        assertEquals(10, calculator.Add(numbers));
 
     }
 
     @Test
     public void addCanHandleNewLinesBetweenDigits() throws Exception {
         String numbers = "1\n2,3";
-        Assertions.assertEquals(6, calculator.Add(numbers));
+        assertEquals(6, calculator.Add(numbers));
 
     }
 
     @Test
     public void addSupportsDifferentDelimiters() throws Exception {
         String numbers ="//;1\n2,3";
-        Assertions.assertEquals(6, calculator.Add(numbers));
+        assertEquals(6, calculator.Add(numbers));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class stringCalculatorTest {
     public void ignoreNumberOverThousand() throws Exception {
         String numbers=
                 "1001,2";
-        Assertions.assertEquals(2, calculator.Add(numbers));
+        assertEquals(2, calculator.Add(numbers));
     }
 //    @Test
 //    public void delimitersCanBeOfAnyLength() throws Exception {
