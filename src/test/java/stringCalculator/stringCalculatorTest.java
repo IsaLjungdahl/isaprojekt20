@@ -16,20 +16,20 @@ public class stringCalculatorTest {
     }
 
     @Test
-    public void addReturnsZeroWhenEmptyString() throws Exception {
+    public void addReturnsZeroWhenEmptyString() {
         String numbers = "";
         assertEquals(0, calculator.Add(numbers));
     }
 
     @Test
-    public void addReturnsJustOneNumber() throws Exception {
+    public void addReturnsJustOneNumber() {
         String numbers = "1";
 
         assertEquals(1, calculator.Add(numbers));
     }
 
     @Test
-    public void addReturnsSumOfTwoNumbers() throws Exception {
+    public void addReturnsSumOfTwoNumbers() {
         String numbers = "1,2";
 
         assertEquals(3, calculator.Add(numbers));
@@ -37,7 +37,7 @@ public class stringCalculatorTest {
     }
 
     @Test
-    public void addReturnsSumOfMoreThanTwoNumbers() throws Exception {
+    public void addReturnsSumOfMoreThanTwoNumbers() {
         String numbers = "1,2,3,4";
 
         assertEquals(10, calculator.Add(numbers));
@@ -45,30 +45,31 @@ public class stringCalculatorTest {
     }
 
     @Test
-    public void addCanHandleNewLinesBetweenDigits() throws Exception {
+    public void addCanHandleNewLinesBetweenDigits() {
         String numbers = "1\n2,3";
-        assertEquals(6, calculator.Add(numbers));
+        assertEquals(6, calculator.newLines(numbers));
 
     }
 
     @Test
-    public void addSupportsDifferentDelimiters() throws Exception {
-        String numbers ="//;1\n2,3";
-        assertEquals(6, calculator.Add(numbers));
+    public void addSupportsDifferentDelimiters() {
+        String numbers = "//;1\n2,3";
+        assertEquals(6, calculator.diffDelim(numbers));
     }
 
     @Test
     public void negativesNotAllowed() {
-        String numbers="-1,2,3";
+        String numbers = "-1,2,3";
         Exception e = assertThrows(
                 Exception.class, () -> calculator.Add(numbers));
 
 
         assertThat(e).hasMessage("negatives not allowed [-1]");
     }
+
     @Test
     public void multipleNegativesNotAllowed() {
-        String numbers=//[delimiter]\n[numbers…]
+        String numbers =//[delimiter]\n[numbers…]
                 "-1,-2,-3";
         Exception e = assertThrows(
                 Exception.class, () -> calculator.Add(numbers));
@@ -78,9 +79,8 @@ public class stringCalculatorTest {
     }
 
     @Test
-    public void ignoreNumberOverThousand() throws Exception {
-        String numbers=
-                "1001,2";
+    public void ignoreNumberOverThousand() {
+        String numbers = "1001,2,2000";
         assertEquals(2, calculator.Add(numbers));
     }
 //    @Test
