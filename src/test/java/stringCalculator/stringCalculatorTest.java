@@ -83,13 +83,16 @@ public class stringCalculatorTest {
         String numbers = "1001,2,2000";
         assertEquals(2, calculator.Add(numbers));
     }
-//    @Test
-//    public void delimitersCanBeOfAnyLength() throws Exception {
-//        String numbers =
-//                "//[***]\n1***2***3";
-//        Assertions.assertEquals(6, calculator.Add(numbers));
-//    }
-
+    @Test
+    public void delimitersCanBeOfAnyLength()  {
+    String numbers = "//[*****]\n1*****2*****3";
+       Assertions.assertEquals(6, calculator.anyLength(numbers));
+ }
+    @Test
+    public void delimitersCanBeOfAnyLengthTwo()  {
+        String numbers = "//[!!!!!]\n1!!!!!2!!!!!3";
+        Assertions.assertEquals(6, calculator.anyLength(numbers));
+    }
 
 }
 
