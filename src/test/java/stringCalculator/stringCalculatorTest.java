@@ -53,8 +53,7 @@ public class stringCalculatorTest {
 
     @Test
     public void addSupportsDifferentDelimiters() throws Exception {
-        String numbers =//[delimiter]\n[numbers…]
-                "1\n2,3";
+        String numbers ="//;1\n2,3";
         Assertions.assertEquals(6, calculator.Add(numbers));
     }
 
@@ -80,10 +79,17 @@ public class stringCalculatorTest {
 
     @Test
     public void ignoreNumberOverThousand() throws Exception {
-        String numbers=//[delimiter]\n[numbers…]
+        String numbers=
                 "1001,2";
         Assertions.assertEquals(2, calculator.Add(numbers));
     }
+//    @Test
+//    public void delimitersCanBeOfAnyLength() throws Exception {
+//        String numbers =
+//                "//[***]\n1***2***3";
+//        Assertions.assertEquals(6, calculator.Add(numbers));
+//    }
+
 
 }
 
