@@ -104,6 +104,12 @@ public class stringCalculatorTest {
         String numbers="//[*][%][?][a]\n1*2%3?1a3";
         Assertions.assertEquals(10, calculator.multipleDelim(numbers));
     }
+
+    @Test
+    public void delimitersCanBeMoreThanTwoAndOfAnyLength(){
+        String numbers="//[**][%%][??][aa]\n1**2%%3??1aa3";
+        Assertions.assertEquals(10, calculator.multipleAnyLength(numbers));
+    }
 //Step 9
 //Make sure you can also handle multiple delimiters with length longer than one char.
 
