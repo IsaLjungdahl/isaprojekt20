@@ -69,10 +69,9 @@ public class stringCalculatorTest {
 
     @Test
     public void multipleNegativesNotAllowed() {
-        String numbers =//[delimiter]\n[numbers…]
-                "-1,-2,-3";
-        Exception e = assertThrows(
-                Exception.class, () -> calculator.Add(numbers));
+        String numbers = "-1,-2,-3";
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> calculator.Add(numbers));
 
 
         assertThat(e).hasMessage("negatives not allowed [-1, -2, -3]");
@@ -93,6 +92,15 @@ public class stringCalculatorTest {
         String numbers = "//[!!!!!]\n1!!!!!2!!!!!3";
         Assertions.assertEquals(6, calculator.anyLength(numbers));
     }
+//    Allow multiple delimiters like this: “//[delim1][delim2]\n” for example “//[*][%]\n1*2%3” should return 6.
+//
+    @Test
+    public void delimitersCanBeTwo(){
+        String numbers="//[*][%]\n1*2%3";
+        Assertions.assertEquals(6, calculator.multipleDelim(numbers));
+    }
+//Step 9
+//Make sure you can also handle multiple delimiters with length longer than one char.
 
 }
 
