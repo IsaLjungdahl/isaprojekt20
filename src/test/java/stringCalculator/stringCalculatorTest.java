@@ -99,6 +99,11 @@ public class stringCalculatorTest {
         String numbers="//[*][%]\n1*2%3";
         Assertions.assertEquals(6, calculator.multipleDelim(numbers));
     }
+    @Test
+    public void delimitersCanBeMoreThanTwo(){
+        String numbers="//[*][%][?][a]\n1*2%3?1a3";
+        Assertions.assertEquals(10, calculator.multipleDelim(numbers));
+    }
 //Step 9
 //Make sure you can also handle multiple delimiters with length longer than one char.
 

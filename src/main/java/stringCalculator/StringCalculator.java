@@ -81,17 +81,14 @@ public class StringCalculator {
 
     public int multipleDelim(String numbers) {
         ArrayList<String> delimArr = new ArrayList<>();
-        String delimeter = numbers.substring(numbers.indexOf("["), numbers.indexOf("]") + 1);
-        String secondDelimiter = numbers.substring(numbers.lastIndexOf("["), numbers.lastIndexOf("]") + 1);
+        String delimeter = numbers.substring(numbers.indexOf("["), numbers.lastIndexOf("]") + 1);
         delimArr.add(delimeter);
-        delimArr.add(secondDelimiter);
-
 
         numbers = numbers.substring(numbers.indexOf('\n') + 1);
 
         numbers = numbers.replaceAll(delimArr.toString(), ",");
 
-        String[] diff = numbers.split("[,\n]");
+        String[] diff = numbers.split("[ ,\n]");
 
         int res = 0;
         for (String number : diff) {
