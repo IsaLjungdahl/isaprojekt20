@@ -18,12 +18,10 @@ public class stringCalculatorTest {
         assertEquals(expected, calculator.Add(numbers));
     }
 
-
     @Test
-    public void addCanHandleNewLinesBetweenDigits() {
+    public void canHandleNewLinesBetweenDigits() {
         String numbers = "1\n2,3";
         assertEquals(6, calculator.newLines(numbers));
-
     }
 
     @Test
@@ -46,7 +44,7 @@ public class stringCalculatorTest {
         String numbers = "-1,-2,-3";
         IllegalArgumentException e = assertThrows(
                 IllegalArgumentException.class, () -> calculator.Add(numbers));
-        
+
         assertThat(e).hasMessage("negatives not allowed [-1, -2, -3]");
     }
 
@@ -56,16 +54,10 @@ public class stringCalculatorTest {
         assertEquals(2, calculator.Add(numbers));
     }
 
-    @Test
-    public void delimitersCanBeOfAnyLength() {
-        String numbers = "//[*****]\n1*****2*****3";
-        Assertions.assertEquals(6, calculator.anyLength(numbers));
-    }
-
-    @Test
-    public void delimitersCanBeOfAnyLengthTwo() {
-        String numbers = "//[!!!!!]\n1!!!!!2!!!!!3";
-        Assertions.assertEquals(6, calculator.anyLength(numbers));
+    @ParameterizedTest
+    @CsvSource({"'//[*****]\n1*****2*****3',6", "'//[!!!]\n1!!!2!!!3',6"})
+    public void delimitersCanBeOfAnyLength(String numbers, int expected) {
+        Assertions.assertEquals(expected, calculator.anyLength(numbers));
     }
 
     @Test

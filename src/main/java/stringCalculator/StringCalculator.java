@@ -27,23 +27,22 @@ public class StringCalculator {
 
     int newLines(String numbers) {
         String[] diff = numbers.split("[,\n]");
-        int res = 0;
+        int result = 0;
         for (String number : diff) {
-            res += (Integer.parseInt(number));
+            result += (Integer.parseInt(number));
         }
-
-        return res;
+        return result;
     }
 
     int diffDelim(String numbers) {
         numbers = numbers.substring(numbers.indexOf(';') + 1);
         numbers = numbers.replaceAll(";", ",");
         String[] diff = numbers.split("[,\n]");
-        int res = 0;
+        int result = 0;
         for (String number : diff) {
-            res += (Integer.parseInt(number));
+            result += (Integer.parseInt(number));
         }
-        return res;
+        return result;
     }
 
 
@@ -53,33 +52,12 @@ public class StringCalculator {
         numbers = numbers.substring(numbers.indexOf('\n') + 1);
         numbers = numbers.replaceAll(";", ",");
         String[] diff = numbers.split(escapeSpecialRegexChars(delimiter));
-        int res = 0;
+        int result = 0;
         for (String number : diff) {
-            res += (Integer.parseInt(number));
+            result += (Integer.parseInt(number));
         }
 
-        return res;
-    }
-
-    int multipleAnyLength(String numbers) {
-        ArrayList<String> delimArr = new ArrayList<>();
-        String delimiter = numbers.substring(numbers.indexOf("["), numbers.lastIndexOf("]") + 1);
-        delimArr.add(delimiter);
-//        String delimiter = numbers.substring(numbers.indexOf("[") + 1, numbers.indexOf("]"));
-        numbers = numbers.substring(numbers.indexOf('\n') + 1);
-        numbers = numbers.replaceAll(delimArr.toString(), ",");
-        String[] diff = numbers.split(escapeSpecialRegexChars(",,"));
-        int res = 0;
-        for (String number : diff) {
-            res += (Integer.parseInt(number));
-        }
-
-        return res;
-    }
-
-    private String escapeSpecialRegexChars(String str) {
-        Pattern specRegexChars = Pattern.compile("\\*");
-        return specRegexChars.matcher(str).replaceAll("\\\\*");
+        return result;
     }
 
     public int multipleDelim(String numbers) {
@@ -93,11 +71,32 @@ public class StringCalculator {
 
         String[] diff = numbers.split("[ ,\n]");
 
-        int res = 0;
+        int result = 0;
         for (String number : diff) {
-            res += Integer.parseInt(number);
+            result += Integer.parseInt(number);
         }
-        return res;
+        return result;
+    }
+
+    int multipleAnyLength(String numbers) {
+        ArrayList<String> delimArr = new ArrayList<>();
+        String delimiter = numbers.substring(numbers.indexOf("["), numbers.lastIndexOf("]") + 1);
+        delimArr.add(delimiter);
+
+        numbers = numbers.substring(numbers.indexOf('\n') + 1);
+        numbers = numbers.replaceAll(delimArr.toString(), ",");
+        String[] diff = numbers.split(escapeSpecialRegexChars(",,"));
+        int result = 0;
+        for (String number : diff) {
+            result += (Integer.parseInt(number));
+        }
+
+        return result;
+    }
+
+    private String escapeSpecialRegexChars(String str) {
+        Pattern specRegexChars = Pattern.compile("\\*");
+        return specRegexChars.matcher(str).replaceAll("\\\\*");
     }
 }
 
