@@ -2,6 +2,8 @@ package stringCalculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,39 +12,12 @@ public class stringCalculatorTest {
 
     private final StringCalculator calculator = new StringCalculator();
 
-    @Test
-    public void doesStringCalculatorExist() {
-        assertTrue(calculator.Add());
+    @ParameterizedTest
+    @CsvSource({"'',0 ", "'1',1", "'1,2',3", "'1,2,3,4',10"})
+    public void addReturnsSum(String numbers, int expected) {
+        assertEquals(expected, calculator.Add(numbers));
     }
 
-    @Test
-    public void addReturnsZeroWhenEmptyString() {
-        String numbers = "";
-        assertEquals(0, calculator.Add(numbers));
-    }
-
-    @Test
-    public void addReturnsJustOneNumber() {
-        String numbers = "1";
-
-        assertEquals(1, calculator.Add(numbers));
-    }
-
-    @Test
-    public void addReturnsSumOfTwoNumbers() {
-        String numbers = "1,2";
-
-        assertEquals(3, calculator.Add(numbers));
-
-    }
-
-    @Test
-    public void addReturnsSumOfMoreThanTwoNumbers() {
-        String numbers = "1,2,3,4";
-
-        assertEquals(10, calculator.Add(numbers));
-
-    }
 
     @Test
     public void addCanHandleNewLinesBetweenDigits() {
@@ -63,7 +38,6 @@ public class stringCalculatorTest {
         Exception e = assertThrows(
                 Exception.class, () -> calculator.Add(numbers));
 
-
         assertThat(e).hasMessage("negatives not allowed [-1]");
     }
 
@@ -72,8 +46,7 @@ public class stringCalculatorTest {
         String numbers = "-1,-2,-3";
         IllegalArgumentException e = assertThrows(
                 IllegalArgumentException.class, () -> calculator.Add(numbers));
-
-
+        
         assertThat(e).hasMessage("negatives not allowed [-1, -2, -3]");
     }
 
@@ -82,36 +55,35 @@ public class stringCalculatorTest {
         String numbers = "1001,2,2000";
         assertEquals(2, calculator.Add(numbers));
     }
+
     @Test
-    public void delimitersCanBeOfAnyLength()  {
-    String numbers = "//[*****]\n1*****2*****3";
-       Assertions.assertEquals(6, calculator.anyLength(numbers));
- }
+    public void delimitersCanBeOfAnyLength() {
+        String numbers = "//[*****]\n1*****2*****3";
+        Assertions.assertEquals(6, calculator.anyLength(numbers));
+    }
+
     @Test
-    public void delimitersCanBeOfAnyLengthTwo()  {
+    public void delimitersCanBeOfAnyLengthTwo() {
         String numbers = "//[!!!!!]\n1!!!!!2!!!!!3";
         Assertions.assertEquals(6, calculator.anyLength(numbers));
     }
-//    Allow multiple delimiters like this: “//[delim1][delim2]\n” for example “//[*][%]\n1*2%3” should return 6.
-//
+
     @Test
-    public void delimitersCanBeTwo(){
-        String numbers="//[*][%]\n1*2%3";
+    public void delimitersCanBeTwo() {
+        String numbers = "//[*][%]\n1*2%3";
         Assertions.assertEquals(6, calculator.multipleDelim(numbers));
     }
+
     @Test
-    public void delimitersCanBeMoreThanTwo(){
-        String numbers="//[*][%][?][a]\n1*2%3?1a3";
+    public void delimitersCanBeMoreThanTwo() {
+        String numbers = "//[*][%][?][a]\n1*2%3?1a3";
         Assertions.assertEquals(10, calculator.multipleDelim(numbers));
     }
 
     @Test
-    public void delimitersCanBeMoreThanTwoAndOfAnyLength(){
-        String numbers="//[**][%%][??][aa]\n1**2%%3??1aa3";
+    public void delimitersCanBeMoreThanTwoAndOfAnyLength() {
+        String numbers = "//[**][%%][??][aa]\n1**2%%3??1aa3";
         Assertions.assertEquals(10, calculator.multipleAnyLength(numbers));
     }
-//Step 9
-//Make sure you can also handle multiple delimiters with length longer than one char.
-
 }
 
